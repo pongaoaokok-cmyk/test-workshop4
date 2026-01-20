@@ -1,1 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Magic Food Store - Magical Theme</title>
+<style>
+  body {
+    background-color: #2e003e;
+    font-family: 'Georgia', serif;
+    color: #ffe6fa;
+    margin: 0;
+    padding: 20px;
+  }
 
+  header {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid #ff8be8;
+  }
+
+  .header-bg {
+    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    color: #ffe6fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 10px rgba(255, 183, 255, 0.8);
+  }
+
+  .header-bg h1 {
+    font-size: 2.8rem;
+    margin: 0;
+  }
+
+  .header-bg p {
+    font-size: 1.2rem;
+    margin: 5px 0 0;
+  }
+
+  .color-buttons {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .color-buttons button {
+    background-color: #a14bc6;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+
+  .color-buttons button:hover {
+    background-color: #8a2be2;
+  }
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .product-card {
+    background: #ffffff;
+    border: 2px solid #d370ff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 0 10px #e19effaa;
+  }
+
+  .product-card img {
+    max-width: 280px;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 10px auto;
+  }
+
+  .product-card h3 {
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    color: #a14bc6;
+  }
+
+  .product-card p {
+    font-size: 0.9rem;
+    color: #2e003e;
+  }
+
+  .promo-bar {
+    width: 100%;
+    background-color: #a14bc6;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 10px 0;
+    position: relative;
+    font-weight: bold;
+    color: #ffe6fa;
+  }
+
+  .promo-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 20s linear infinite;
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+
+  .promo-menu-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 15px 0;
+    background-color: #2e003e;
+  }
+
+  .promo-menu-list {
+    display: inline-flex;
+    gap: 20px;
+  }
+
+  .promo-menu-item {
+    background: #ffffff;
+    border: 2px solid #d370ff;
+    border-radius: 8px;
+    width: 220px;
+    padding: 10px;
+    box-shadow: 0 0 8px #e19effaa;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .promo-menu-item img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  .promo-menu-item h4 {
+    margin: 10px 0 5px 0;
+    color: #a14bc6;
+  }
+
+  .promo-menu-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5c1b6f;
+  }
+
+  .promo-menu-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .promo-menu-container::-webkit-scrollbar-thumb {
+    background-color: #d370ff;
+    border-radius: 4px;
+  }
+  .product-card {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.card-buttons {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.card-buttons button {
+  margin: 5px;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #a14bc6;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.card-buttons button:hover {
+  background-color: #8623b5;
+}
+
+.product-card:hover .card-buttons {
+  display: block;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bg">
+    <h1>รวมสูตรอาหาร</h1>
+    <p>เคล็ดลับความอร่อย ถูกรวมไว้ที่นี่แล้ว</p>
+  </div>
+</header>
+
+<style>
+  header {
+    width: 100%;
+    height: 200px; /* ปรับความสูงตามต้องการ */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-bg {
+    background-image: url('https://images.unsplash.com/photo-1612837017391-d3f2434d3f9e?auto=format&fit=crop&w=1600&q=80'); /* เปลี่ยนเป็นรูปแนวเวทย์มนต์ถ้ามี */
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    color: #ffe6fa; /* ชมพูอ่อน */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* ให้ข้อความดูชัดขึ้น */
+  }
+
+  .header-bg h1 {
+    margin: 0;
+    font-size: 3rem;
+    color: #f8c0ff; /* ชมพูอ่อนฟุ้ง ๆ */
+  }
+
+  .header-bg p {
+    margin: 10px 0 0 0;
+    font-size: 1.3rem;
+    color: #e9d1ff;
+  }
+</style>
+<style>
+#hamburger-menu {
+  font-size: 2rem;
+  color: white;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000; /* ลดลงให้ต่ำกว่าตอน sidebar เปิด */
+  cursor: pointer;
+  background-color: #a14bc6;
+  padding: 10px 15px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #d370ff;
+  transition: z-index 0.3s ease;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 220px;
+  height: 100%;
+  background-color: #ffe6fa;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+  padding: 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease, z-index 0.3s ease;
+  z-index: 900; /* ต่ำกว่าปุ่ม hamburger ตอนปิด */
+}
+
+#sidebar.open {
+  left: 0;
+  z-index: 3000; /* สูงกว่าปุ่ม hamburger ตอนเปิด */
+}
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 220px;
+    height: 100%;
+    background-color: #ffe6fa;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+    padding: 20px;
+    box-sizing: border-box;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+
+  #sidebar button, .dropdown-side .dropbtn-side {
+    display: block;
+    width: 100%;
+    background-color: #a14bc6;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    border-radius: 6px;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .dropdown-side {
+    position: relative;
+  }
+
+  .dropdown-content-side {
+    display: none;
+    flex-direction: column;
+    background-color: #f3d4ff;
+    margin-top: 5px;
+    border-radius: 6px;
+    padding: 5px 0;
+  }
+
+  .dropdown-content-side a {
+    padding: 10px 16px;
+    text-decoration: none;
+    color: #2e003e;
+    font-weight: bold;
+    display: block;
+  }
+
+  .dropdown-content-side a:hover {
+    background-color: #e8bfff;
+  }
+
+  .dropdown-side:hover .dropdown-content-side {
+    display: flex;
+  }
+  #home-button {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+  display: block;
+}
+
+#home-button img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#home-button img:hover {
+  transform: scale(1.1);
+}
+
+</style>
+
+  <div id="hamburger-menu" onclick="toggleSidebar()">☰</div>
+    <a href="index.html" id="home-button">
+      <img
+        src="https://scontent.fbkk12-6.fna.fbcdn.net/v/t1.15752-9/494857286_734086785733897_673301147216811728_n.png?_nc_cat=106&ccb=1-7&_nc_sid=0024fc&_nc_ohc=L5Xs_NR_os0Q7kNvwG71iVg&_nc_oc=Adlzml6yUAqGL2bMN7oz5QUB7acAMp2exhKYdb7DDx-QOoXkeBVN2GJBbRXSoXG2BkM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.fbkk12-6.fna&oh=03_Q7cD2gGkNAsoG7o7Wj_tdbn37ravGWjD9HT700u9jfbNG3oUTw&oe=68721517"
+        alt="กลับหน้าหลัก"
+        style="width: 200px; height: auto"
+      />
+    </a>
+<div id="sidebar">
+  <button onclick="window.location.href='index.html'">หน้าแรก</button>
+  <button onclick="window.location.href='layout.html'">โปรโมชั่นทั้งหมด</button>
+  <div class="dropdown-side">
+    <button class="dropbtn-side">หมวดหมู่</button>
+    <div class="dropdown-content-side">
+      <a href="category_main.html?cat=main">อาหารจานหลัก</a>
+      <a href="category_drink.html">เครื่องดื่ม</a>
+      <a href="#">ของหวาน (เร็วๆ นี้)</a>
+      <a href="linkCOOKING.html">รวมสูตรอาหาร</a>
+      <a href="linkRESTAURANT.html">รวมร้านอาหาร</a>
+    </div>
+  </div>
+</div>
+<script>
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburger-menu');
+
+  if (sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    hamburger.style.zIndex = '1000';  // hamburger อยู่บนสุดตอน sidebar ปิด
+  } else {
+    sidebar.classList.add('open');
+    hamburger.style.zIndex = '2000';  // hamburger อยู่ล่าง sidebar ตอนเปิด
+  }
+}
+
+</script>
+
+<style>
+  .nav-buttons {
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .nav-buttons button {
+    background-color: #a14bc6;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 0 8px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-buttons button:hover {
+    background-color: #8623b5;
+  }
+</style>
+
+<style>
+#floating-cart {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #a14bc6;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px #d370ff;
+  z-index: 1000;
+}
+#floating-cart:hover {
+  background-color: #8623b5;
+}
+</style>
+<script>
+  function viewDetails(productName) {
+    localStorage.setItem("currentProduct", productName);
+    window.location.href = "about.html";
+  }
+</script>
+
+<style>
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 คอลัมน์ */
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .product-card {
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .card-buttons {
+    margin-top: 10px;
+  }
+
+  .card-buttons button {
+    margin: 5px 8px 0;
+    background-color: #a14bc6;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .card-buttons button:hover {
+    background-color: #8623b5;
+  }
+</style>
+
+<style>
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: fadeIn 0.5s ease;
+}
+
+.modal-content {
+  display: flex;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  position: relative;
+  top: 10%;
+}
+
+.modal-left {
+  flex: 0.4;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: slideInLeft 0.5s ease;
+}
+
+.modal-left img {
+  max-width: 70%;
+  max-height: 50%;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.modal-left h2 {
+  color: #2e003e;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.modal-right {
+  flex: 0.4;
+  background-color: #ffe6fa;
+  padding: 20px;
+  overflow-y: auto;
+  animation: slideInRight 0.5s ease;
+}
+
+.recipe-info h3 {
+  color: #a14bc6;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.recipe-info p {
+  color: #2e003e;
+  line-height: 1.6;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #ffffff;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+.close:hover {
+  color: #ff8be8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+</style>
+
+<div class="product-grid">
+  <div class="product-card" onclick="openModal('food1')">
+    <img src="https://www.ubonsunflower.com/storage/tasuko-product/recipes/cassava-flour-batter-mix/fried-chicken/img-01.webp" alt="อาหาร 1">
+    <h3>ไก่ทอดสูตรเด็ด</h3>
+  </div>
+  <div class="product-card" onclick="openModal('food2')">
+    <img src="https://img.thaicdn.net/u/2016/surauch/cook1/salad.jpg" alt="อาหาร 2">
+    <h3>สลัดไข่เจียว</h3>
+  </div>
+  <div class="product-card" onclick="openModal('food3')">
+    <img src="https://s359.thaicdn.net//pagebuilder/08b89cb0-a35b-4611-8a58-296fbe02f6db.jpg" alt="อาหาร 3">
+    <h3>หมูย่างเตาถ่าน</h3>
+  </div>
+  <div class="product-card" onclick="openModal('food4')">
+    <img src="https://s359.thaicdn.net//pagebuilder/3dfc9eae-e6b7-484a-9cbc-280067076ce4.jpg" alt="อาหาร 4">
+    <h3>ข้าวผัดหมู</h3>
+  </div>
+    <div class="product-card" onclick="openModal('food5')">
+    <img src="https://s359.thaicdn.net//pagebuilder/4eb6ef41-b089-4e0b-978c-8815dd1f3cc5.jpg" alt="อาหาร 5">
+    <h3>ไข่ดาวฟูกรอบ</h3>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="recipe-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-left">
+      <img id="modal-image" src="" alt="">
+      <h2 id="modal-title"></h2>
+    </div>
+    <div class="modal-right">
+      <div class="recipe-info">
+        <h3>สูตรอาหาร</h3>
+        <p id="recipe-details">รายละเอียดสูตรจะแสดงที่นี่...</p>
+      </div>
+    </div>
+    <span class="close" onclick="closeModal()">&times;</span>
+  </div>
+</div>
+
+<script>
+function openModal(foodId) {
+  const modal = document.getElementById('recipe-modal');
+  const modalImage = document.getElementById('modal-image');
+  const modalTitle = document.getElementById('modal-title');
+  const recipeDetails = document.getElementById('recipe-details');
+
+  // Set content based on foodId
+  const foodData = {
+    food1: {
+      image: 'https://www.ubonsunflower.com/storage/tasuko-product/recipes/cassava-flour-batter-mix/fried-chicken/img-01.webp',
+      title: 'ไก่ทอดสูตรเด็ด',
+      recipe: '1. นำปีกไก่มาล้างให้สะอาด 2. ก่อนหมักไก่นำส้อมมาจิ้มปีกไก่ให้ทั่ว เพื่อให้ส่วนผสมจากการหมักซึมเข้าเนื้อได้เร็วขึ้น 3. ใส่น้ำปลา น้ำตาลทราย พริกไทยป่น แล้วคลุกเคล้าให้เข้ากัน 4. ใส่แป้งทอดกรอบ คลุกเคล้าต่อพอให้เคลือบเนื้อไก่ทั่วๆ แนะนำให้หมักทิ้งไว้ประมาณ 20-30 นาที 5. จากนั้นตั้งน้ำมันให้ร้อนได้ที่ ใช้ไฟปานกลาง ถ้าใช้ไฟแรงไป อาจทำให้ด้านนอกไหม้ก่อนที่ด้านในจะสุกได้ 6. เมื่อปีกไก่สุก ให้เร่งไฟเพื่อให้ปีกไก่เป็นสีเหลืองทอง และเป็นการไล่น้ำมันได้อีกด้วย 7. เมื่อปีกไก่มีสีเหลืองทองตามต้องการแล้ว ให้นำลงมาพักไว้บนกระดาษซับน้ำมัน เพียงเท่านี้ก็เป็นอันเสร็จเรียบร้อยพร้อมทาน!'
+    },
+    food2: {
+      image: 'https://img.thaicdn.net/u/2016/surauch/cook1/salad.jpg',
+      title: 'สลัดไข่เจียว',
+      recipe: '1. ตอกไข่ไก่ใส่ชามตีพอแตก ปรุงรสด้วยน้ำปลา ตีพอเข้ากัน 2. ตั้งกระทะใส่น้ำมันพืช พอน้ำมันร้อนเทไข่ลงเจียวพอสุกเหลืองทั้ง 3. ผสมส่วนผสมน้ำสลัด คนพอเข้ากัน พักไว้ 4. จัดผักสลัดต่าง ๆ และไข่เจียวหั่นเส้นใส่ภาชนะ ราดด้วยน้ำสลัด ก่อนเสิร์ฟคลุกเคล้าให้เข้ากันอีกครั้ง'
+    },
+    food3: {
+      image: 'https://s359.thaicdn.net//pagebuilder/08b89cb0-a35b-4611-8a58-296fbe02f6db.jpg',
+      title: 'หมูย่างเตาถ่าน',
+      recipe: '1. โขลกพริกไทยกับกระเทียมพอหยาบ เตรียมไว้ 3. ผสมน้ำตาลปี๊บ ซอสหอยนางรม ซอสปรุงรส และน้ำปลา ใส่ส่วนผสมโขลกลงไปคลุกเคล้าจนน้ำตาลละลาย 3. นำคอหมูมาจิ้มด้วยส้อมจนเป็นรู ใส่ลงไปหมักกับส่วนผสมเครื่องโขลกประมาณ 30 นาที หรือข้ามคืน เสร็จแล้วนำมาย่างด้วยเตาถ่านใช้ไฟอ่อน พอสุกหั่นชิ้นจัดเสิร์ฟคู่กับน้ำจิ้มแจ่ว'
+    },
+    food4: {
+      image: 'https://s359.thaicdn.net//pagebuilder/3dfc9eae-e6b7-484a-9cbc-280067076ce4.jpg',
+      title: 'ข้าวผัดหมู',
+      recipe: '1. ใส่น้ำมันลงในกระทะ ใส่กระเทียมสับลงไปเจียวจนหอม ใส่หมูลงไปผัดพอสุก 2. ตอกไข่ไก่ลงไปยีพอแตก ตามด้วยคะน้า ผัดพอสุก ใส่ข้าวสวยลงไป 3. ปรุงรสด้วยน้ำตาลทราย ซีอิ๊วขาว และซอสปรุงรส อาจเพิ่มสีสันด้วยซีอิ๊วดำ 4. ใส่มะเขือเทศกับหอมใหญ่ ผัดคลุกเคล้าพอเข้ากัน ใส่ต้นหอม ผัดพอเข้ากัน ตักเสิร์ฟกับมะนาวหั่นซีก แตงกวา และพริกน้ำปลา'
+    },
+    food5: {
+      image: 'https://s359.thaicdn.net//pagebuilder/4eb6ef41-b089-4e0b-978c-8815dd1f3cc5.jpg',
+      title: 'ไข่ดาวฟูกรอบ',
+      recipe: '1. ตอกไข่ใส่ถ้วย เตรียมไว้ 2. เตรียมกระทะก้นลึก ใส่น้ำมันลงไปกะพอท่วมไข่ เปิดไฟแรง พอน้ำมันร้อนมีควันขึ้นมาให้หรี่เป็นไฟกลาง 3. เทไข่ลงไปใกล้ ๆ น้ำมัน อย่าเพิ่งกลับไข่เพราะไข่จะแตก รอให้ไข่ขาวเซตตัว โดยดูขอบไข่ขาวว่ามีสีเข้มขึ้นและกรอบฟู ค่อย ๆ แซะไข่ดาวขึ้นมา ทอดจนไข่ขาวกรอบตามชอบ ส่วนไข่แดงจะเยิ้ม แต่ถ้าชอบไข่แดงสุกให้ตักน้ำมันราดลงไปจนสุกตามชอบ ตักขึ้นพักให้สะเด็ดน้ำมัน'
+    }
+  };
+
+  const data = foodData[foodId];
+  modalImage.src = data.image;
+  modalTitle.textContent = data.title;
+  recipeDetails.textContent = data.recipe;
+
+  modal.style.display = 'block';
+}
+
+function closeModal() {
+  const modal = document.getElementById('recipe-modal');
+  modal.style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('recipe-modal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+</script>
+
+</body>
+</html>
